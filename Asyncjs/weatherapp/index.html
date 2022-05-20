@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather_app</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div class="serch">
@@ -27,9 +28,15 @@
           .then((res) => res.json())
           .then((data) => {
             document.getElementById("info").innerHTML = `
-                <h1 class="city_dis">${data.name}</h1>
-                <h1 class="temp_dis">${data.main.temp}</h1>
-                <h2 class="desc">${data.weather[0].description}</h2>
+                <h1 class="city_dis">
+                  City:
+                  ${data.name}</h1>
+                <h1 class="temp_dis">
+                  Temperature:
+                  ${data.main.temp}</h1>
+                <h2 class="desc">
+                  Weather Condition:
+                  ${data.weather[0].description}</h2>
             `;
 
             // console.log(data);
