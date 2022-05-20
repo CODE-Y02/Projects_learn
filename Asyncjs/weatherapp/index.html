@@ -19,6 +19,48 @@
       //   let cityname = "nagpur";
       let APIkey = "d1ab431d11673486974d7b9d2f11e4ad";
 
+      document.getElementById("city_submit").onclick = async () => {
+        let cityname = document.getElementById("city_in").value;
+
+        let responseFromApi = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${APIkey}`
+        );
+
+        let dataFromResponse = await responseFromApi.json();
+        try {
+          document.getElementById("info").innerHTML = `
+            <h1 class="city_dis">
+              City:
+              ${dataFromResponse.name}</h1>
+            <h1 class="temp_dis">
+              Temperature:
+              ${dataFromResponse.main.temp} C</h1>
+            <h2 class="desc">
+              Weather Condition:
+              ${dataFromResponse.weather[0].description}</h2>
+        `;
+        } catch (err) {
+          document.getElementById("info").innerHTML = `
+            <h1 class="city_dis">
+              buddy something is Wrong
+             </h1>
+             
+            
+        `;
+          console.log(err);
+        }
+
+        console.log(cityname);
+      };
+    </script>
+
+    <!-- old code below thiis line  -->
+    <!-- <script>
+      //THIS IS OLD CODE Where I have learned promises and fetch
+      //   let cityname = document.getElementById("city_in").value;
+      //   let cityname = "Your CITY ";
+      let APIkey = "Your API KEY";
+
       document.getElementById("city_submit").onclick = () => {
         let cityname = document.getElementById("city_in").value;
 
@@ -54,6 +96,6 @@
 
         console.log(cityname);
       };
-    </script>
+    </script> -->
   </body>
 </html>
