@@ -33,7 +33,7 @@
                   ${data.name}</h1>
                 <h1 class="temp_dis">
                   Temperature:
-                  ${data.main.temp}</h1>
+                  ${data.main.temp} C</h1>
                 <h2 class="desc">
                   Weather Condition:
                   ${data.weather[0].description}</h2>
@@ -43,6 +43,13 @@
             // console.log(data.name);
             // console.log(data.main.temp);
             // console.log(data.weather[0].description);
+          })
+          .catch((err) => {
+            console.log(err);
+            document.getElementById("info").innerHTML = `
+              <div class="err_info">
+                <h1 class="error">Hay Buddy tell me correct city</h1>
+              </div>`;
           });
 
         console.log(cityname);
