@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather_app</title>
+  </head>
+  <body>
+    <div class="serch">
+      <input type="text" id="city_in" />
+      <button id="city_submit">Search</button>
+    </div>
+    <div id="info"></div>
+
+    <script>
+      //   let cityname = document.getElementById("city_in").value;
+      //   let cityname = "nagpur";
+      let APIkey = "d1ab431d11673486974d7b9d2f11e4ad";
+
+      document.getElementById("city_submit").onclick = () => {
+        let cityname = document.getElementById("city_in").value;
+
+        fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${APIkey}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("info").innerHTML = `
+                <h1 class="city_dis">${data.name}</h1>
+                <h1 class="temp_dis">${data.main.temp}</h1>
+                <h2 class="desc">${data.weather[0].description}</h2>
+            `;
+
+            // console.log(data);
+            // console.log(data.name);
+            // console.log(data.main.temp);
+            // console.log(data.weather[0].description);
+          });
+
+        console.log(cityname);
+      };
+    </script>
+  </body>
+</html>
